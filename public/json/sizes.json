@@ -1,0 +1,12 @@
+[
+    {
+        "query": "INSERT INTO Sizes (name) VALUES ('Small');"
+    },
+    {
+        "query": "INSERT INTO Sizes (name) VALUES ('Medium');"
+    },
+    {
+        "query": "INSERT INTO Sizes (name) VALUES ('Large');"
+    }
+]
+

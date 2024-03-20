@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', async function (req, res, next) {
   // const animals = await animalService.getAll();
-  let animals =  [
+  let animals = [
     {
       "Id": 1,
       "Name": "Coco",
@@ -121,8 +121,7 @@ router.get('/', async function (req, res, next) {
       "Size": "large",
       "Adopted": false
     }
-   ]
-
+  ]
   res.render('animals', { user: null, animals: animals });
 });
 

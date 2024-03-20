@@ -1,0 +1,17 @@
+[
+    {
+        "query": "INSERT INTO Temperaments (name) VALUES ('Calm');"
+    },
+    {
+        "query": "INSERT INTO Temperaments (name) VALUES ('Scared');"
+    },
+    {
+        "query": "INSERT INTO Temperaments (name) VALUES ('Energetic');"
+    },
+    {
+        "query": "INSERT INTO Temperaments (name) VALUES ('Happy');"
+    },
+    {
+        "query": "INSERT INTO Temperaments (name) VALUES ('Lazy');"
+    }
+]

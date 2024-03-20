@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
@@ -28,6 +27,24 @@ app.use('/animals', animalsRouter);
 app.use('/species', speciesRouter);
 app.use('/temperament', temperamentRouter);
 
+
+// Test db connection.
+const db = require('./models');
+
+db.sequelize.authenticate()
+.then(() => {
+  console.log('Connection successful');
+  // sync all models
+  return db.sequelize.sync({ force: true }); //TODO SET TO FALSE!
+})
+.then(() => {
+  console.log('& Database synced');
+})
+.catch(err => {
+  console.error('Unable to connect to database', err);
+});
+
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -43,6 +60,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
 

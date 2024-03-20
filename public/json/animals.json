@@ -1,0 +1,41 @@
+[
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Coco', 1, '2020-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Ted', 2, '2021-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Coco', 3, '2020-02-12', 2, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Everrest', 4, '2019-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Rocko', 5, '2020-02-12', 2, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Goldy', 6, '2023-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Lizzy', 7, '2020-02-12', 2, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Goga', 8, '2018-02-12', 3, TRUE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Tweet Tweet', 9, '2020-02-12', 3, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Toothless', 10, '2017-02-12', 2, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Sophie', 1, '2020-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Teddy', 2, '2021-02-12', 1, FALSE);"
+  },
+  {
+    "query": "INSERT INTO Animals (Name, SpeciesId, Birthday, SizeId, Adopted) VALUES ('Roger', 9, '2020-02-18', 3, FALSE);"
+  }
+]
