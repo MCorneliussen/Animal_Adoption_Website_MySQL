@@ -38,3 +38,7 @@ If you are unsure of any instructions for the course assignment, contact out to 
 
 
 # DATABASEACCESS
+```
+CREATE USER 'dabcaowner'@'localhost' IDENTIFIED BY 'dabca1234';
+GRANT ALL PRIVILEGES ON *.* TO 'dabcaowner'@'localhost' WITH GRANT OPTION;
+```
