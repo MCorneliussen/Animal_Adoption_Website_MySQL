@@ -15,7 +15,7 @@
 	<%- include('./partials/navbar.ejs') %>
 		<% if(user){%>
 			<p>You are currently logged in as the <b>
-					<%=user.username%>
+					<%=user.Username%>
 				</b></p>
 			<form action="/logout" method="post">
 				<button class="logout" type="submit">Sign out</button>

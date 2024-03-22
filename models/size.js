@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Size = sequelize.define('Size', {
-        name: DataTypes.STRING
+        Name: DataTypes.STRING
     });
 
     Size.associate = function(models) {

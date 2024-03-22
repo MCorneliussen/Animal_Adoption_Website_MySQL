@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Temperament = sequelize.define('Temperament', {
-        name: DataTypes.STRING
+        Name: DataTypes.STRING
     });
 
     Temperament.associate = function(models) {

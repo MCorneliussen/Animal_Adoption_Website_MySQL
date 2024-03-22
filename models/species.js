@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Species = sequelize.define('Species', {
-        name: DataTypes.STRING
+        Name: DataTypes.STRING
     });
 
     Species.associate = function(models) {

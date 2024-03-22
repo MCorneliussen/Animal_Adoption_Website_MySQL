@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Adoption = sequelize.define('Adoption', {
-        adoptionDate: {
+        AdoptionDate: {
             type: DataTypes.DATE,
             allowNull: false
         }
