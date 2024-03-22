@@ -25,14 +25,22 @@
                     </li>
                     <% } else {%>
                         <li class="nav-item">
-                            <p class="nav-link">Hello <%= user.username %>
+                            <p class="nav-link">Hello <%= user.Username %>
                             </p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <a href="#" class="nav-link"
+                                onclick="document.getElementById('logout-form').submit(); return false;">Sign out</a>
                         </li>
                         <% }; %>
             </ul>
         </div>
     </div>
+
+    <!-- Hidden Logout Form, to maintain the style of the nav buttons-->
+    <% if (user) { %>
+        <form id="logout-form" action="/logout" method="post" style="display: none;">
+            <input type="submit" value="Logout">
+        </form>
+        <% } %>
 </nav>

@@ -122,7 +122,7 @@ router.get('/', async function (req, res, next) {
       "Adopted": false
     }
   ]
-  res.render('animals', { user: null, animals: animals });
+  res.render('animals', { user: req.user, animals: animals });
 });
 
 module.exports = router;

@@ -12,11 +12,11 @@ router.get('/', async function (req, res, next) {
             Name: "Scared"
         }
     ]
-    res.render("temperament", {user: null, temperament: temperament})
+    res.render("temperament", {user: req.user, temperament: temperament})
 })
 
 router.post('/update', async function (req,res,next){
-    res.render("index",{user: null})
+    res.render("index",{user: req.user})
 })
 
 module.exports = router;

@@ -15,16 +15,16 @@ router.post('/populate-database', async (req, res) => {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express', user: null });
+  res.render('index', { title: 'Express', user: req.user });
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Express', user: null });
+  res.render('login', { title: 'Express', user: req.user });
 });
 
 
 router.get('/signup', function (req, res, next) {
-  res.render('signup', { title: 'Express', user: null });
+  res.render('signup', { title: 'Express', user: req.user });
 });
 
 module.exports = router;
