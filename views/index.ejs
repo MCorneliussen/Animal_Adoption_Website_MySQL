@@ -27,14 +27,13 @@
 
 <script>
   function populateDatabase() {
-    // send post req to the server side endpoint
     fetch('/populate-database', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(response => response.json()) //Parse json response
-    .then(data => alert(data.message)) //show success msg
-    .catch( error => console.error('error:', error)); //error handler
+    .then(response => response.json()) 
+    .then(data => alert(data.message)) 
+    .catch( error => console.error('error:', error)); 
   }
 </script>
 
