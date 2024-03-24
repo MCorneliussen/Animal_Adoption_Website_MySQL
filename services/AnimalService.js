@@ -34,13 +34,14 @@ class AnimalService {
 
         return animals;
     }
-    
+   
+
     formatDate(date) {
-        const d = new Date(date);
-        const day = d.getDate().toString().padStart(2, '0');
-        const month = (d.getMonth() + 1).toString().padStart(2, '0');
-        const year = d.getFullYear();
-        return `${day}.${month}.${year}`;
+        return new Date(date).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        });
     }
 
     calculateAge(birthday) {

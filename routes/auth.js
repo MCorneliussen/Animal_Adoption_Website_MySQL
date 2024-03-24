@@ -24,14 +24,14 @@ passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
-
 passport.deserializeUser(function (id, done) {
     db.User.findByPk(id)
         .then(user => done(null, user))
         .catch(err => done(err));
 });
 
-var router = express.Router()
+var router = express.Router();
+
 router.get('/login', function (req, res, next) {
     res.render('login');
 });
@@ -60,8 +60,11 @@ router.post('/signup', function (req, res, next) {
         Password: req.body.password,
         Role: 'Member' // Default role is member
     })
-        .then(() => res.redirect('/login'))
-            .catch(err => next(err));
-});;
+    .then(() => res.redirect('/login'))
+    .catch(err => {
+        console.error("Signup error:", err);
+        res.redirect('/signup');
+    });
+});
 
 module.exports = router;

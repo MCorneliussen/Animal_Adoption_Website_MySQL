@@ -45,47 +45,62 @@
           <span class="col py-1 bg-noroff">Adopted</span>
           <span class="col py-1 bg-noroff">Options</span>
         </div>
+        <div id="animalList">
+          <% animals.forEach(function(animal) { %>
+            <div class="row px-3 py-1 w-100">
+              <span class="col py-1 bg-light ">
+                <%=animal.id%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Name%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Species%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.FormattedBirthday%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Temperament%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Size%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Age%>
+              </span>
+              <span class="col py-1 bg-light">
+                <%=animal.Adopted%>
+              </span>
+              <span class="col py-1 bg-light text-center">
 
-        <% animals.forEach(function(animal) { %>
-          <div class="row px-3 py-1 w-100">
-            <span class="col py-1 bg-light ">
-              <%=animal.id%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Name%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Species%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.FormattedBirthday%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Temperament%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Size%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Age%>
-            </span>
-            <span class="col py-1 bg-light">
-              <%=animal.Adopted%>
-            </span>
-            <span class="col py-1 bg-light text-center">
+                <span class="col py-1 bg-light text-center">
+                  <% if (user) { %>
+                    <% if (!animal.Adopted && (user.Role==='Member' || user.Role==='Admin' )) { %>
+                      <button class="btn-sm btn-warning" onclick="adoptAnimal(<%=animal.id%>)">Adopt</button>
+                      <% } else { %>
+                        <button class="btn-sm btn-warning" disabled>Adopt</button>
+                        <% } %>
 
-              <% if (user && (user.Role==='Member' || user.Role==='Admin') && !animal.Adopted) { %>
-                <button class="btn-sm btn-warning" onclick="adoptAnimal(<%=animal.id%>)">Adopt</button>
-                <% } %>
+                          <% if (animal.Adopted && user.Role==='Admin' ) { %>
+                            <button class="btn-sm btn-danger" onclick="deleteAnimal(<%=animal.id%>)">Cancel
+                              Adoption</button>
+                            <% } else { %>
+                              <button class="btn-sm btn-danger" disabled>Cancel Adoption</button>
+                              <% } %>
+                                <% } else { %>
+                                  <button class="btn-sm btn-warning"
+                                    onclick="alert('Please login to adopt animals.');">Adopt</button>
+                                  <button class="btn-sm btn-danger"
+                                    onclick="alert('Please login to manage adoptions.');">Cancel Adoption</button>
+                                  <% } %>
+                </span>
 
-                  <% if (user && user.Role==='Admin' && animal.Adopted) { %>
-                    <button class="btn-sm btn-danger" onclick="deleteAnimal(<%=animal.id%>)">Cancel Adoption</button>
-                    <% } %>
-            </span>
-          </div>
-          <% }); %>
-            <hr>
-
+              </span>
+            </div>
+            <% }); %>
+              <hr>
+        </div>
       </div>
     </div>
 </body>
