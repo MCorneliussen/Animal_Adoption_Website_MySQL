@@ -23,22 +23,79 @@ If you are unsure of any instructions for the course assignment, contact out to 
 ---
 
 # Application Installation and Usage Instructions
+1. Clone the repository to your local machine:
+   ```
+   git clone <repository_url>
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd <project_directory>
+   ```
+
+3. Install dependencies using npm:
+   ```
+   npm install
+   ```
+
+4. Set up environment variables by creating a `.env` file in the root directory of the project and adding necessary variables (see **Environment Variables** section for details).
+
+5. Start the server:
+   ```
+   npm start
+   ```
+
+6. Access the application through your web browser at `http://localhost:3000`.
+   
+
+* Once the server is running, you can navigate to the provided URL in your browser to access the application.
+* Follow the application's user interface to interact with its features.
 
 
 # Environment Variables
 
+- **PORT**: Specifies the port number for the server to listen on.
+- **HOST**: Specifies the hostname for the server.
+- **DATABASE_NAME**: Name of the MySQL database used by the application.
+- **DB_USER**: Username for accessing the MySQL database.
+- **DB_PASSWORD**: Password for the specified MySQL database user.
+- **SESSION_SECRET**: Secret key used for session management.
+
+Ensure you set appropriate values for these environment variables in the `.env` file.
 
 # Additional Libraries/Packages
+- **cookie-parser**: Middleware for parsing cookies.
+- **debug**: Utility for debugging.
+- **dotenv**: Loads environment variables from a `.env` file.
+- **ejs**: Templating engine for generating HTML markup.
+- **express**: Web framework for Node.js.
+- **express-session**: Middleware for managing sessions in Express.
+- **http-errors**: Utility for creating HTTP errors.
+- **morgan**: HTTP request logger middleware.
+- **mysql2**: MySQL client for Node.js.
+- **passport**: Authentication middleware for Node.js.
+- **passport-local**: Passport strategy for authenticating with a username and password.
+- **sequelize**: Promise-based ORM for Node.js and SQL databases.
 
+Ensure these dependencies are installed by running `npm install`.
 
 # NodeJS Version Used
-
+v20.10.0
 
 # DATABASE
+To create the database, execute the following SQL command:
+```sql
 CREATE DATABASE adoptiondb
+```
 
 # DATABASEACCESS
-```
+To grant access to the database, execute the following SQL commands:
+
+```sql
 CREATE USER 'dabcaowner'@'localhost' IDENTIFIED BY 'dabca1234';
-GRANT ALL PRIVILEGES ON *.* TO 'dabcaowner'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON adoptiondb.* TO 'dabcaowner'@'localhost' WITH GRANT OPTION;
 ```
+
+
+
+

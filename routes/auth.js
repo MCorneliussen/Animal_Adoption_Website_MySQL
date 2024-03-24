@@ -3,7 +3,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var db = require("../models");
 
-// Setting up the passport LocalStrategy
 passport.use(new LocalStrategy(
     function (username, password, done) {
         db.User.findOne({ where: { Username: username } })

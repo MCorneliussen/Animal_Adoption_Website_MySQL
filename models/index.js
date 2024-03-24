@@ -11,17 +11,13 @@ const dbConfig = {
     host: process.env.HOST,
     dialect: process.env.DIALECT,
     define: {
-        timestamps: false // globally disable createdAt and updateAt for all models, I struggled with unwanted columns.
+        timestamps: false
     }
-    // TODO dialectModel: process.env.DIALECTMODEL
+
 };
 
 const sequelize = new Sequelize(dbConfig);
-
-
 const db = {};
-
-
 
 fs.readdirSync(__dirname)
     .filter(file => {
@@ -32,7 +28,6 @@ fs.readdirSync(__dirname)
         const model = require(path.join(__dirname, file))(sequelize,
             Sequelize.DataTypes);
         db[model.name] = model;
-        console.log(db) // TODO DELETE 
     });
 
 Object.keys(db).forEach(modelName => {

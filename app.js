@@ -39,20 +39,14 @@ app.use('/species', speciesRouter);
 app.use('/temperament', temperamentRouter);
 
 
-
-// Establish db connection, drop tables and sync
 const db = require('./models');
+
 db.sequelize.authenticate()
   .then(() => {
-    //console.log('Connection successful');
-    // sync all models
     return db.sequelize.sync({ force: true }); //TODO SET TO FALSE!
   })
-  .then(() => {
-    //console.log('& Database synced');
-  })
   .catch(err => {
-    console.error('Unable to connect to database', err);
+    console.error('Unable to connect to database ', err);
   });
 
 
@@ -62,7 +56,7 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -8,7 +8,6 @@ function adoptAnimal(id) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             window.location.reload();
         })
         .catch(error => console.error('Error adopting animal', error));
@@ -24,7 +23,6 @@ function deleteAnimal(id) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             window.location.reload();
         })
         .catch(error => console.error('Error cancelling adoption', error));
@@ -79,7 +77,6 @@ function updateTemperament(id) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 window.location.reload()
             })
             .catch(error => console.error('Error updating temperament', error));
@@ -123,9 +120,8 @@ function sqlQuery3() {
 }
 
 function sqlQuery4() {
-    // This will need additional UI for date range input
-    const startDate = '2020-01-01'; // Example start date
-    const endDate = '2021-01-01'; // Example end date
+    const startDate = '2020-01-01'; // TODO NOT COMPLETED
+    const endDate = '2022-02-02'; 
     fetchAnimals(`/animals/date-range?startDate=${startDate}&endDate=${endDate}`);
 }
 
@@ -134,45 +130,54 @@ function sqlQuery5() {
 }
 
 function allAnimals() {
-    fetchAnimals('/animals/all')
+    window.location.href = '/animals/all'
 }
 
 
-function displayAnimals(animals) {
+function displayAnimals(data) {
     const animalsList = document.querySelector('#animalList');
-    animalsList.innerHTML = ''; // Clear existing animals
+    animalsList.innerHTML = '';
 
-    animals.forEach(animal => {
-        const animalElement = document.createElement('div');
-        animalElement.classList.add('row', 'px-3', 'py-1', 'w-100');
-        animalElement.innerHTML = `
-        <span class="col py-1 bg-light ">${animal.id || 'N/A'}</span>
-        <span class="col py-1 bg-light">${animal.Name || 'N/A'}</span>
-        <span class="col py-1 bg-light">${animal.Species.Name || 'N/A'}</span>
-        <span class="col py-1 bg-light">${formatDate(animal.Birthday)}</span>
-        <span class="col py-1 bg-light">${animal.Temperaments.map(t => t.Name).join(', ') || 'N/A'}</span>
-        <span class="col py-1 bg-light">${animal.Size.Name || 'N/A'}</span>
-        <span class="col py-1 bg-light">${calculateAge(animal.Birthday)}</span>
-        <span class="col py-1 bg-light">${animal.Adopted}</span>
-        <span class="col py-1 bg-light text-center">
-                <button class="btn-sm btn-warning" data-action="adopt" data-id="${animal.id}" >Adopt</button>
-                <button class="btn-sm btn-danger" data-action="cancel" data-id="${animal.id}" >Cancel Adoption</button>
-            </span>
-        `;
-        animalsList.appendChild(animalElement);
-    });
-    animalsList.addEventListener('click', function (event) {
-        const target = event.target;
-        if (target.tagName.toLowerCase() === 'button' && !target.disabled) {
-            const action = target.dataset.action;
-            const animalId = target.dataset.id;
-            if (action === 'adopt') {
-                adoptAnimal(animalId);
-            } else if (action === 'cancel') {
-                deleteAnimal(animalId);
+    if (data[0] && (data[0].count !== undefined)) {
+        data.forEach(item => {
+            const element = document.createElement('div');
+            element.classList.add('row', 'px-3', 'py-1', 'w-100');
+            if (item.Name && item.count) { 
+                element.innerHTML = `<span class="col py-1 bg-light">Name: ${item.Name} - Count: ${item.count}</span>`;
+            } else if (item.Size && item.count) { 
+                element.innerHTML = `<span class="col py-1 bg-light">Size: ${item.Size.Name} - Count: ${item.count}</span>`;
             }
-        }
-    });
+            animalsList.appendChild(element);
+        });
+    } else { 
+        data.forEach(animal => {
+            const animalElement = document.createElement('div');
+            animalElement.classList.add('row', 'px-3', 'py-1', 'w-100');
+            animalElement.innerHTML = `
+            <span class="col py-1 bg-light ">${animal.id || 'N/A'}</span>
+            <span class="col py-1 bg-light">${animal.Name || 'N/A'}</span>
+            <span class="col py-1 bg-light">${animal.Species?.Name || 'N/A'}</span>
+            <span class="col py-1 bg-light">${formatDate(animal.Birthday) || 'N/A'}</span>
+            <span class="col py-1 bg-light">${animal.Temperaments?.map(t => t.Name).join(', ') || 'N/A'}</span>
+            <span class="col py-1 bg-light">${animal.Size?.Name || 'N/A'}</span>
+            <span class="col py-1 bg-light">${calculateAge(animal.Birthday)}</span>
+            <span class="col py-1 bg-light">${animal.Adopted ? 'Yes' : 'No'}</span>
+            <span class="col py-1 bg-light text-center">Options</span>`;
+            animalsList.appendChild(animalElement);
+        });
+        animalsList.addEventListener('click', function (event) {
+            const target = event.target;
+            if (target.tagName.toLowerCase() === 'button' && !target.disabled) {
+                const action = target.dataset.action;
+                const animalId = target.dataset.id;
+                if (action === 'adopt') {
+                    adoptAnimal(animalId);
+                } else if (action === 'cancel') {
+                    deleteAnimal(animalId);
+                }
+            }
+        });
+    }
 }
 
 function calculateAge(birthday) {
@@ -193,13 +198,3 @@ function formatDate(date) {
         year: 'numeric',
     });
 }
-
-
-
-// You might need to attach these functions to window object or find another way to call them from your .ejs file.
-window.sqlQuery1 = sqlQuery1;
-window.sqlQuery2 = sqlQuery2;
-window.sqlQuery3 = sqlQuery3;
-window.sqlQuery4 = sqlQuery4;
-window.sqlQuery5 = sqlQuery5;
-window.allAnimals = allAnimals;

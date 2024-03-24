@@ -34,7 +34,7 @@ class AnimalService {
 
         return animals;
     }
-   
+
 
     formatDate(date) {
         return new Date(date).toLocaleDateString('en-GB', {
@@ -94,7 +94,69 @@ class AnimalService {
             throw error;
         }
     }
+    async getPopularAnimals() {
+        return this.db.Animal.findAll({
+            attributes: [
+                'Name',
+                [this.db.sequelize.fn('COUNT', this.db.sequelize.col('Name')), 'NameCount']
+            ],
+            group: ['Name'],
+            order: [[this.db.sequelize.col('NameCount'), 'DESC']],
+            raw: true,
+        });
+    }
 
+    async getAdoptedAnimals() {
+        return this.getAllWithFilter({ Adopted: true });
+    }
+
+    async getAnimalsByAge(direction = 'DESC') {
+        return this.db.Animal.findAll({
+            order: [[this.db.sequelize.literal('DATEDIFF(CURRENT_DATE, Birthday)'), direction]],
+            include: this.commonIncludes(),
+        });
+    }
+
+    async getAnimalsByDateRange(startDate, endDate) {
+        return this.db.Animal.findAll({
+            where: {
+                Birthday: {
+                    [this.db.Sequelize.Op.between]: [startDate, endDate],
+                },
+            },
+            include: this.commonIncludes(),
+        });
+    }
+
+    async getAnimalsBySize() {
+        return this.db.Size.findAll({
+            include: {
+                model: this.db.Animal,
+                as: 'Animals',
+                attributes: [],
+            },
+            group: ['Size.id'],
+            attributes: ['Name', [this.db.sequelize.fn('COUNT', this.db.sequelize.col('Animals.id')), 'AnimalCount']],
+        });
+    }
+
+    commonIncludes() {
+        return [
+            { model: this.db.Species, as: 'Species', attributes: ['Name'] },
+            { model: this.db.Temperament, as: 'Temperaments', attributes: ['Name'], through: { attributes: [] } },
+            { model: this.db.Size, as: 'Size', attributes: ['Name'] },
+            { model: this.db.Adoption, as: 'adoptionDetails', attributes: ['AdoptionDate'] }
+        ];
+    }
+
+    async getAllWithFilter(filter) {
+        return this.db.Animal.findAll({
+            where: filter,
+            include: this.commonIncludes(),
+        });
+    }
 }
+
+
 
 module.exports = new AnimalService();
