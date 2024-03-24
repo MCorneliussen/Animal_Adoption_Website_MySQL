@@ -5,7 +5,7 @@ var session = require('express-session');
 var passport = require('passport');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger = require('morgan'); 
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
@@ -15,7 +15,7 @@ var temperamentRouter = require('./routes/temperament');
 
 var app = express();
 
-// view engine setup
+// view engine setu p
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
