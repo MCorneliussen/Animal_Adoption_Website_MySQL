@@ -6,10 +6,10 @@ const { populateDatabaseInOrder } = require('../services/populateDatabase');
 router.post('/populate-database', async (req, res) => {
   try {
     await populateDatabaseInOrder();
-    res.json({ message: 'Database populated successfully!'});
+    //res.json({ message: 'Database populated successfully!'});
   } catch (error) {
     console.error('Database population failed', error);
-    res.status(500).json({ message: 'Error populating the database'});
+    //res.status(500).json({ message: 'Error populating the database'});
   }
 });
 

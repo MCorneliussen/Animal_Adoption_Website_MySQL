@@ -35,7 +35,7 @@ If you are unsure of any instructions for the course assignment, contact out to 
 
 
 # DATABASE
-
+CREATE DATABASE adoptiondb
 
 # DATABASEACCESS
 ```

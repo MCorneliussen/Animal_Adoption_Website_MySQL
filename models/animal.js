@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     Animal.associate = function(models) {
         Animal.belongsTo(models.Species, { foreignKey: 'SpeciesId' });
         Animal.belongsTo(models.Size, { foreignKey: 'SizeId' });
-        Animal.belongsToMany(models.Temperament, { through: 'AnimalTemperaments', foreignKey: 'AnimalId'});
-        Animal.hasOne(models.Adoption, { foreignKey: 'AnimalId' });
+        Animal.belongsToMany(models.Temperament, { through: 'AnimalTemperaments', foreignKey: 'AnimalId', as: 'Temperaments'});
+        Animal.hasOne(models.Adoption, { as: 'adoptionDetails', foreignKey: 'AnimalId' });
     };
 
     return Animal;

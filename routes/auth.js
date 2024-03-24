@@ -55,7 +55,7 @@ router.get('/signup', function (req, res, next) {
 
 router.post('/signup', function (req, res, next) {
     db.User.create({
-        FullName: '${req.body.firstname} ${req.body.lastname}',
+        FullName: `${req.body.firstname} ${req.body.lastname}`,
         Username: req.body.username,
         Password: req.body.password,
         Role: 'Member' // Default role is member

@@ -19,17 +19,17 @@
             <span class="col py-1 bg-noroff">Name</span>
             <span class="col py-1 bg-noroff">Options</span>
           </div>
-          <% temperament.forEach(function(temp) { %>
+          <% temperaments.forEach(function(temp) { %>
             <div class="row px-3 py-1 w-100">
               <span class="col py-1 bg-light">
-                <%=temp.Id%>
+                <%=temp.id%>
               </span>
               <span class="col py-1 bg-light">
                 <%=temp.Name%>
               </span>
               <span class="col py-1 bg-light text-center">
-                <button class="btn-sm btn-warning" onclick="updateTemperament(<%=temp.Id%>)">Update temperament</button>
-                <button class="btn-sm btn-danger" onclick="deleteTemperament(<%=temp.Id%>)">Delete temperament</button>
+                <button class="btn-sm btn-warning" onclick="updateTemperament(<%=temp.id%>)">Update temperament</button>
+                <button class="btn-sm btn-danger" onclick="deleteTemperament(<%=temp.id%>)">Delete temperament</button>
               </span>
             </div>
             <% }); %>

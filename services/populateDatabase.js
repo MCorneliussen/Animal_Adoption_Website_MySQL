@@ -12,7 +12,7 @@ async function populateDatabase(fileNames) {
         for (const { query } of queries) {
             await sequelize.query(query);
         }
-        console.log(`${fileName} processed and data inserted to db`);
+        //console.log(`${fileName} processed and data inserted to db`);
     }
 
 }
@@ -29,9 +29,9 @@ async function populateDatabaseInOrder() {
     ];
     try {
         await populateDatabase(fileOrder);
-        console.log('All data successfully populated, finally');
+        //console.log('All data successfully populated, finally');
     } catch (error) {
-        console.error('Failed to populate database:', error);
+        //console.error('Failed to populate database:', error);
     }
 }
 

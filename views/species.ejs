@@ -21,14 +21,14 @@
           <% species.forEach(function(species) { %>
             <div class="row px-3 py-1 w-100">
               <span class="col py-1 bg-light">
-                <%=species.Id%>
+                <%=species.id%>
               </span>
               <span class="col py-1 bg-light">
                 <%=species.Name%>
               </span>
               <span class="col py-1 bg-light text-center">
-                <button class="btn-sm btn-warning" onclick="updateSpecies( <%=species.Id%>)">Update species</button>
-                <button class="btn-sm btn-danger" onclick="deleteSpecies( <%=species.Id%>)">Delete species</button>
+                <button class="btn-sm btn-warning" onclick="updateSpecies( <%=species.id%>)">Update species</button>
+                <button class="btn-sm btn-danger" onclick="deleteSpecies( <%=species.id%>)">Delete species</button>
               </span>
             </div>
             <% }); %>
